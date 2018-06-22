@@ -80,3 +80,14 @@ DesktopGL project. This will make sure the correct paths are used.
 
 - PackageCustomInfoPlist - Allows the developer too provide there own `Info.plist` for 
   `MacOS` packaging. If not provided a default one will be created.
+  
+  
+# Things to be aware of
+
+On MacOS there are restrictions as to what can go into an `.app` package and more specificall what can go in the various folders. As a result your `Content` directory for your game will NOT be next to the executable. It will be in the following relative directory `../Resources/Content`. Fortunately MonoGame is already designed to handle this and the packaging system will automatically put the `Content` in the right place if you use the default setup. 
+
+However if you are using `File.Open` to manually load resources, this may well cause problems. It is recommended that if you do need to open a file or stream you should use `TitleContainer.OpenStream` as this will look in the correct place.
+  
+## Issues
+
+If you have a problem with the Nuget please raise an issue. If possible provide as much information as possible, including a diagnostic build log.
